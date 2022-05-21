@@ -14681,7 +14681,9 @@ void LivingLifePage::step() {
 
 				// If user doesn't have a seed in their email field
 				if( seededEmail.find('|') == std::string::npos ) {
-					std::string seedList = SettingsManager::getSettingContents( "spawnSeed", "" );
+                    char *seedListFromFile = SettingsManager::getSettingContents( "spawnSeed", "" );
+					std::string seedList(seedListFromFile);
+                    delete seedListFromFile;
 					std::string seed = "";
 					if( seedList == "" ) {
 						seed = "";
