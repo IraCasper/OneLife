@@ -100,6 +100,7 @@ void minitech::setLivingLifePage(
 	minitechEnabled = SettingsManager::getIntSetting( "useMinitech", 1 );
 	char *minimizeKeyFromSetting = SettingsManager::getStringSetting("minitechMinimizeKey", "v");
 	minimizeKey = minimizeKeyFromSetting[0];
+    delete [] minimizeKeyFromSetting;
     
     showUncraftables = SettingsManager::getIntSetting( "minitechShowUncraftables", 0 );
 }
@@ -1742,17 +1743,20 @@ void minitech::livingLifeDraw(float mX, float mY) {
 		listener->mouseHover = false;
 		
 		if ( !listener->mouseHover && !listener->mouseClick ) {
+            delete listener;
 			twotechMouseListeners.erase( twotechMouseListeners.begin() + i );
 		}
 	}
 	
 	if ( prevListener != NULL ) {
 		if ( !prevListener->mouseHover && !prevListener->mouseClick ) {
+            delete prevListener;
 			prevListener = NULL;
 		}
 	}
 	if ( nextListener != NULL ) {
 		if ( !nextListener->mouseHover && !nextListener->mouseClick ) {
+            delete nextListener;
 			nextListener = NULL;
 		}
 	}
