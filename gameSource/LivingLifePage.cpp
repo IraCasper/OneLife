@@ -6838,10 +6838,13 @@ char whiteBorder = true;
 
 char LivingLifePage::isCoveredByFloor( int inTileIndex ) {
     int i = inTileIndex;
+    if( i < 0 || i >= mMapD * mMapD ) return false;
     
     int fID = mMapFloors[ i ];
-
+    int maxObjectID = getMaxObjectID();
+    
     if( fID > 0 && 
+        fID <= maxObjectID &&
         ! getObject( fID )->noCover ) {
         return true;
         }
@@ -19108,7 +19111,6 @@ void LivingLifePage::step() {
                 if( ourID != lastPlayerID ) {
                     homePosStack.deleteAll();
 					HetuwMod::initOnBirth();
-					minitech::initOnBirth();
                     // different ID than last time, delete old home markers
                     oldHomePosStack.deleteAll();
                     }
