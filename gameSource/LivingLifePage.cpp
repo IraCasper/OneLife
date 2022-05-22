@@ -1329,13 +1329,16 @@ static char *getDisplayObjectDescription( int inID ) {
     stripDescriptionComment( upper );
     return upper;
     }
-	
-char *LivingLifePage::minitechGetDisplayObjectDescription( int objId ) { 
+
+string LivingLifePage::minitechGetDisplayObjectDescription( int objId ) { 
     ObjectRecord *o = getObject( objId );
     if( o == NULL ) {
 		return "";
     }
-	return getDisplayObjectDescription(objId);
+    char *descriptionChars = getDisplayObjectDescription(objId);
+    string description(descriptionChars);
+    delete descriptionChars;
+	return description;
 }
 
 static bool possibleUseOnContainedContTrans( int oldId, int newId ) { 

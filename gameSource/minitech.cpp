@@ -1457,7 +1457,7 @@ void minitech::updateDrawTwoTech() {
 					continue;
 				}
 				
-				string objName(livingLifePage->minitechGetDisplayObjectDescription(id));
+				string objName = livingLifePage->minitechGetDisplayObjectDescription(id);
 				drawStr(objName, captionPos, "tinyHandwritten", true, true);
 				
 				ObjectRecord* o = getObject(id);
@@ -1552,7 +1552,7 @@ void minitech::updateDrawTwoTech() {
 		sub(iconBR, screenPos));
 	if (headerIconListener->mouseHover && currentHintObjId > 0) {
 		doublePair captionPos = {iconCen.x, iconCen.y + iconCaptionYOffset};
-		string objName(livingLifePage->minitechGetDisplayObjectDescription(currentHintObjId));
+		string objName = livingLifePage->minitechGetDisplayObjectDescription(currentHintObjId);
 		drawStr(objName, captionPos, "tinyHandwritten", true, true);
 		
 		ObjectRecord* o = getObject(currentHintObjId);
@@ -1589,7 +1589,7 @@ void minitech::updateDrawTwoTech() {
                 searchStr = "SEARCHING: " + lastHintStr + " (SAY '/' TO CLEAR)";
             }
 		} else if (ourLiveObject->holdingID != 0 && ourLiveObject->holdingID == currentHintObjId) {
-			string objName(livingLifePage->minitechGetDisplayObjectDescription(currentHintObjId));
+			string objName = livingLifePage->minitechGetDisplayObjectDescription(currentHintObjId);
 			searchStr = "HOLDING: " + objName;
 		}
 		
@@ -1636,7 +1636,7 @@ void minitech::inputHintStrToSearch(string hintStr) {
 			vector<ObjectRecord*> unsortedHits;
 			for (int i=0; i<numHits; i++) {
                 if( !showCommentsAndTagsInObjectDescription ) {
-                    string strippedName(livingLifePage->minitechGetDisplayObjectDescription(hitsSimpleVector[i]->id)); 
+                    string strippedName = livingLifePage->minitechGetDisplayObjectDescription(hitsSimpleVector[i]->id);
                     if( strippedName.find(hintStr) != std::string::npos )
                         unsortedHits.push_back(hitsSimpleVector[i]);
                 } else {
